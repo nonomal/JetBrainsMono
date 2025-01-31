@@ -17,16 +17,11 @@ Select JetBrains Mono in the IDE settings: go to `Preferences/Settings` → `Edi
 
 ### Brew (macOS only)
 
-1. Tap the font cask to make the Jetbrains Mono font available :
+Install it using the `font-jetbrains-mono` cask:
 
-    ```console
-    brew tap homebrew/cask-fonts
-    ```
-2. Install it using the `font-jetbrains-mono` cask:
-
-   ```console
-   brew install --cask font-jetbrains-mono
-   ```
+```console
+brew install --cask font-jetbrains-mono
+```
 
 ### Manual installation
 
@@ -37,7 +32,7 @@ _On Mac/Windows_:
    - _Mac_. Select all font files in the folder and double-click them. Click the **Install Font** button.
    - _Windows_. Select all font files in the folder, right-click any of them, then pick **Install** from the menu.
 
-📝 Note: If you have previously installed JetBrains Mono, please uninstall all previous versions to exclude conflicts and errors in rendering.
+> **Note** If you have previously installed JetBrains Mono, please uninstall all previous versions to exclude conflicts and errors in rendering.
 
 _On Linux_: 
 
@@ -86,7 +81,15 @@ A ligature is a character consisting of two or more joined symbols. Traditionall
 
 ![Alt text](images/ligatures-2@2x.gif)
 
-📝 Note: if your IDE doesn’t support OpenType features and ligatures, use [JetBrains Mono NL](https://github.com/JetBrains/JetBrainsMono/tree/master/fonts/ttf) instead.
+> **Note** if your IDE doesn’t support OpenType features and ligatures, use [JetBrains Mono NL](https://github.com/JetBrains/JetBrainsMono/tree/master/fonts/ttf) instead.
+
+## OpenType features
+Starting from v2.304, JetBrains Mono has added support for alternate characters.
+_Stylistic Sets_ `ss01-20` usually change a group of characters. _Character Variant_ `cv01-99` usually changes only one character.
+Here are the [instructions for enabling these features.](https://github.com/JetBrains/JetBrainsMono/wiki/OpenType-features)
+
+![Alt text](images/stylistic-sets@2x.png)
+![Alt text](images/character-variants@2x.png)
 
 ## Basic Character Set
 
@@ -95,12 +98,16 @@ You can find full JetBrains Mono character set on our [wiki page](https://github
 
 ## Building from source files
 
+> **Note** To build from source, you'd need Python 3.9.5 or higher (install instructions for Python [available here](https://wiki.python.org/moin/BeginnersGuide/Download)).
+
 The source files can be found in the *"Source"* folder. To open them you will need Glyphs app.\
-To build the `.ttf`, `.otf`, `woff2` & variable `.ttf` you will need:
-- install **gftools** `pip install gftools` (requires python 3.9.5 or higher on BigSur)
-- Navigate to **…JetBrainsMono/sources/** in Terminal app.
-- Type `gftools builder config.yaml` in Terminal and run it.
-- After the script is complete the files can be found in *Fonts* folder.
+To build the `.ttf`, `.otf`, `woff2` & variable `.ttf` you will need to:
+- Install **gftools** `pip install gftools`
+- Install **fonttools[woff]** `pip install fonttools[woff]`
+- Navigate to **JetBrainsMono** folder in Terminal app.
+- Type `gftools builder sources/config.yaml` in Terminal and run it.
+- Type `python scripts/generate_variable_webfonts.py` in Terminal and run it to generate variable `woff2` files.
+- After the scripts are complete, the files can be found in *fonts* folder.
 
 ## License
 
